@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    section.container
+        include header
+        article.item
+        -if(data.length)
+            table.table
+                tr
+                    th Id
+                    th Título
+                    th Año
+                    th Calificación
+                    th Imagen
+                    th
+                    th 
+                        form(method='get', action='/add')
+                            input(type='submit', value='Añadir', class='button add')
+                each movie in data 
+                    tr
+                        td=movie.movie_id
+                        td=movie.title 
+                        td=movie.release_year
+                        td=movie.rating
+                        td
+                            img.imagen(src=`${movie.image}`)
+                        td 
+                            form(method="get", action=`/edit/${movie.movie_id}`)
+                                input(type="submit", value="Editar")
+                        td 
+                            form(method="post", action=`/delete/${movie.movie_id}`)
+                                input(type="button", value="delete", onclick="eliminar(this)")
+        -else
+            div.errorCaja
+                p.error No existen peliculas en la base de datos
+
+        script(src="script.js")

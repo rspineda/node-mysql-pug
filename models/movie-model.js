@@ -7,8 +7,8 @@ const Movie = ()=>{
 
 };
 
-Movie.getAll = ()=>{
-
+Movie.getAll = (cb)=>{
+    movieModel.query("SELECT * FROM movie", cb) //el callback es el parametro que llega del controlador (movie-controler)
 };
 
 Movie.get = ()=>{

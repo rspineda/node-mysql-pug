@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    section.container
+        include header
+        .item
+            form.form(method='POST', action=`/update/${data[0].movie_id}`)
+                fieldset
+                    .box1
+                        label(for='id') IMDB id:
+                        input(type="text", name="id", value=`${data[0].movie_id}`, disabled)  
+                        input(type="hidden", name="movie_id", value=`${data[0].movie_id}`, )
+                    .box2
+                        label(for='title') Título:
+                        input(type="text", name="title", value=`${data[0].title}`, required)
+                    .box3
+                        label(for='realease_year') Año:
+                        input(type="text", name="release_year", value=`${data[0].release_year}`, required)
+                    .box4
+                        label(for='rating') Rating:
+                        input(type="text", name="rating", value=`${data[0].rating}`, required)
+                    .box5
+                        label(for='image') url de la imagen:
+                        input(type="text", name="image", value=`${data[0].image}`, required)
+                    .box6
+                        input(type="submit", value="Actualizar")
+
+        a(href="/") Regresar al home
+
+//- la propiedad disabled , me permite que no se pueda editar el campo del id, o los que yo no quiera que se editen
+//- El problema es que al recoger los datos de ese formulario no se va a enviar el input que este 'disbled', por eso me creo otro
+//- igual a ese disabled pero lo coloco hidden y asi puedo tener el id de la pelicula para mandarlo a la base de datos.

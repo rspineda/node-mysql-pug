@@ -9,7 +9,22 @@ ControllerMovie.error404 = (req, res, next)=>{
 
 };
 ControllerMovie.getAll = (req, res, next)=>{
-
+    movieModel.getAll((err, result, fields)=>{  //result me da las filas de la tabla
+        if(err){
+            let locals = {
+                title: "ERROR 404",
+                description: "RECURSO NO ENCONTRADO",
+                error: error
+            }
+            res.render("error", locals);
+        }else{
+            let locals ={
+                title: 'Lista de peliculas',
+                data: result
+            }
+            res.render('index', locals);
+        }
+    });
 };
 ControllerMovie.get = (req, res, next)=>{
 
