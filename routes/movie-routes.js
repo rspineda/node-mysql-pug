@@ -6,10 +6,10 @@ const controller = require('../controllers/movie-controller'),
 
 router
     .get('/', controller.getAll)
-    .get('/movie/:movie_id', controller.get)
     .get('/add', controller.add)
     .post('/', controller.saveAdd)
-    .put('/movie/:movie_id', controller.update) //aqui en crud sería post
+    .get('/update/:movie_id', controller.update)
+    .put('/update/:movie_id', controller.saveUpdate) //aqui en crud sería post
     .delete('/movie/:movie_id', controller.delete) //aqui en crud sería post
     .use(controller.error404);
 

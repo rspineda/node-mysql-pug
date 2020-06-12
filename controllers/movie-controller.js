@@ -26,12 +26,11 @@ ControllerMovie.getAll = (req, res, next)=>{
         }
     });
 };
-ControllerMovie.get = (req, res, next)=>{
 
-};
 ControllerMovie.add = (req, res, next)=>{
     res.render('add-form', {title:'Añadir Película a la base de datos'});
 };
+
 ControllerMovie.saveAdd = (req, res, next)=>{
     let newMovie = {
         movie_id : req.body.movie_id,
@@ -54,7 +53,28 @@ ControllerMovie.saveAdd = (req, res, next)=>{
         }
     })
 };
+
 ControllerMovie.update = (req, res, next)=>{
+    let movie_id = req.params.movie_id;
+    movieModel.update(movie_id, (err, result, fields)=>{
+        if(err){
+            let locals = {
+                title: `Error al cargar la pelicula con id: ${movie_id} para editarla`,
+                description: "Error de sintaxis",
+                error: err
+            }
+            res.render("error", locals);
+        }else{
+            let locals = {
+                title : "Editar pelicula",
+                data : result
+            }
+            res.render("edit", locals);
+        }
+    })
+};
+
+ControllerMovie.saveUpdate = (req, res, next)=>{
 
 };
 ControllerMovie.delete = (req, res, next)=>{

@@ -25,7 +25,7 @@ block content
                         td
                             img.imagen(src=`${movie.image}`)
                         td 
-                            form(method="get", action=`/edit/${movie.movie_id}`)
+                            form(method="get", action=`/update/${movie.movie_id}`)
                                 input(type="submit", value="Editar")
                         td 
                             form(method="post", action=`/delete/${movie.movie_id}`)

@@ -11,15 +11,17 @@ Movie.getAll = (cb)=>{
     movieModel.query("SELECT * FROM movie", cb) //el callback es el parametro que llega del controlador (movie-controler)
 };
 
-Movie.get = ()=>{
 
-};
 
 Movie.save = (movie, cb)=>{ //movie es el newMovie que me llega del controlador, y el cb es la fucnión que ejecuto en el controlador
     movieModel.query("INSERT INTO movie SET ?", movie, cb); //aquí mando a ejecutar el callback que tengo en el controlador 
 };
 
-Movie.update = ()=>{
+Movie.update = (movie_id, cb)=>{
+    movieModel.query(`SELECT * FROM movie WHERE movie_id = '${movie_id}'`, cb)
+};
+
+Movie.saveUpdate = ()=>{
 
 };
 
