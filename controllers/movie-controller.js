@@ -30,10 +30,29 @@ ControllerMovie.get = (req, res, next)=>{
 
 };
 ControllerMovie.add = (req, res, next)=>{
-
+    res.render('add-form', {title:'Añadir Película a la base de datos'});
 };
 ControllerMovie.saveAdd = (req, res, next)=>{
+    let newMovie = {
+        movie_id : req.body.movie_id,
+        title : req.body.title,
+        release_year : req.body.release_year,
+        rating : req.body.rating,
+        image: req.body.image 
+    };
 
+    movieModel.save(newMovie, (err)=>{
+        if(err){
+            let locals = {
+                title: `Error al grabar la nueva película con id: ${newMovie.movie_id}`,
+                description: "Error de sintaxis",
+                error: err
+            }
+            res.render("error", locals);
+        }else{
+            res.redirect("/");
+        }
+    })
 };
 ControllerMovie.update = (req, res, next)=>{
 

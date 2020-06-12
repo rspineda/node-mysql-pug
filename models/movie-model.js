@@ -15,8 +15,8 @@ Movie.get = ()=>{
 
 };
 
-Movie.save = ()=>{
-
+Movie.save = (movie, cb)=>{ //movie es el newMovie que me llega del controlador, y el cb es la fucnión que ejecuto en el controlador
+    movieModel.query("INSERT INTO movie SET ?", movie, cb); //aquí mando a ejecutar el callback que tengo en el controlador 
 };
 
 Movie.update = ()=>{

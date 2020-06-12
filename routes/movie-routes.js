@@ -7,7 +7,7 @@ const controller = require('../controllers/movie-controller'),
 router
     .get('/', controller.getAll)
     .get('/movie/:movie_id', controller.get)
-    .get('/movie/add', controller.add)
+    .get('/add', controller.add)
     .post('/', controller.saveAdd)
     .put('/movie/:movie_id', controller.update) //aqui en crud sería post
     .delete('/movie/:movie_id', controller.delete) //aqui en crud sería post
