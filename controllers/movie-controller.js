@@ -40,7 +40,7 @@ ControllerMovie.saveAdd = (req, res, next)=>{
         image: req.body.image 
     };
 
-    movieModel.save(newMovie, (err)=>{
+    movieModel.save(newMovie, (err, result, fields)=>{
         if(err){
             let locals = {
                 title: `Error al grabar la nueva película con id: ${newMovie.movie_id}`,
@@ -75,8 +75,29 @@ ControllerMovie.update = (req, res, next)=>{
 };
 
 ControllerMovie.saveUpdate = (req, res, next)=>{
-
+    const updatedMovie = {
+        movie_id : req.body.movie_id, //este lo saco del input hidden ya que no permito editarlo para poder hacer la comparación en la base de datos.
+        title : req.body.title,
+        release_year : req.body.release_year,
+        rating : req.body.rating,
+        image: req.body.image 
+    };
+    console.log("antes de entrar al modelo",updatedMovie);
+    movieModel.saveUpdate(updatedMovie, (err, result, fileds)=>{
+        if(err){
+            let locals = {
+                title: `Error al editar la película con id: ${updatedMovie.movie_id}`,
+                description: "Error de sintaxis",
+                error: err
+            }
+            res.render("error", locals);
+        }else{
+            console.log("despues del modelo")
+            res.redirect("/");
+        }
+    })
 };
+
 ControllerMovie.delete = (req, res, next)=>{
 
 };

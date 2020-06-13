@@ -18,11 +18,11 @@ Movie.save = (movie, cb)=>{ //movie es el newMovie que me llega del controlador,
 };
 
 Movie.update = (movie_id, cb)=>{
-    movieModel.query(`SELECT * FROM movie WHERE movie_id = '${movie_id}'`, cb)
+    movieModel.query(`SELECT * FROM movie WHERE movie_id = '${movie_id}'`, cb);
 };
 
-Movie.saveUpdate = ()=>{
-
+Movie.saveUpdate = (updatedMovie, cb)=>{
+    movieModel.query(`UPDATE  movie SET ? WHERE movie_id = ?`, [updatedMovie, updatedMovie.movie_id], cb);
 };
 
 Movie.delete = ()=>{
