@@ -25,8 +25,8 @@ Movie.saveUpdate = (updatedMovie, cb)=>{
     movieModel.query(`UPDATE  movie SET ? WHERE movie_id = ?`, [updatedMovie, updatedMovie.movie_id], cb);
 };
 
-Movie.delete = ()=>{
-
+Movie.delete = (movie_id, cb)=>{
+    movieModel.query(`DELETE FROM movie WHERE movie_id = '${movie_id}'`, cb )
 };
 
 module.exports = Movie;

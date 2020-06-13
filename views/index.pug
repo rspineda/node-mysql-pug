@@ -30,6 +30,7 @@ block content
                         td 
                             form(method="post", action=`/delete/${movie.movie_id}`)
                                 input(type="button", value="delete", onclick="eliminar(this)")
+                                input(type="hidden", name="_method", value="DELETE")
         -else
             div.errorCaja
                 p.error No existen peliculas en la base de datos

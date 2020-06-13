@@ -10,7 +10,7 @@ router
     .post('/', controller.saveAdd)
     .get('/update/:movie_id', controller.update)
     .put('/update/:movie_id', controller.saveUpdate) //aqui en crud sería post
-    .delete('/movie/:movie_id', controller.delete) //aqui en crud sería post
+    .delete('/delete/:movie_id', controller.delete) //aqui en crud sería post
     .use(controller.error404);
 
 

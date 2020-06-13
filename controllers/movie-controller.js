@@ -82,7 +82,6 @@ ControllerMovie.saveUpdate = (req, res, next)=>{
         rating : req.body.rating,
         image: req.body.image 
     };
-    console.log("antes de entrar al modelo",updatedMovie);
     movieModel.saveUpdate(updatedMovie, (err, result, fileds)=>{
         if(err){
             let locals = {
@@ -92,14 +91,24 @@ ControllerMovie.saveUpdate = (req, res, next)=>{
             }
             res.render("error", locals);
         }else{
-            console.log("despues del modelo")
             res.redirect("/");
         }
     })
 };
 
 ControllerMovie.delete = (req, res, next)=>{
-
+    let movie_id = req.params.movie_id;
+    movieModel.delete(movie_id, (err, result, fields)=>{
+        if(err){
+            let locals ={
+                title: `Error al eliminar la película con id: ${movie_id}`,
+                description: "Error de sintaxis",
+                error: err
+            }
+        }else{
+            res.redirect("/");
+        }
+    })
 };
 
 
