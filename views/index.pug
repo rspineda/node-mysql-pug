@@ -36,3 +36,5 @@ block content
                 p.error No existen peliculas en la base de datos
 
         script(src="script.js")
+
+//- Para poder lanzar el formulario por DELETE tengo que añadir un campo  ---input(type="hidden", name="_method", value="PUT")--- y manejarlo con el middlware "methodOverride" que logre manejar esa ruta.

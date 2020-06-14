@@ -6,8 +6,16 @@ const ControllerMovie = ()=>{
 };
 
 ControllerMovie.error404 = (req, res, next)=>{
-
+    let error = new Error();
+    error.status = 404;
+    let locals = {
+        title: "ERROR 404",
+        description: "RECURSO NO ENCONTRADO",
+        error: error
+    }
+    res.render("error", locals);
 };
+
 ControllerMovie.getAll = (req, res, next)=>{
     movieModel.getAll((err, result, fields)=>{  //result me da las filas de la tabla
         if(err){
